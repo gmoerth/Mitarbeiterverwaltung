@@ -1,0 +1,93 @@
+﻿<Window x:Class="MitarbeiterverwaltungWPF.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MitarbeiterverwaltungWPF.Views"
+        xmlns:h="clr-namespace:MitarbeiterverwaltungWPF.Helpers"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="525">
+
+    <Window.Resources>
+        <h:StringToVisibilityConverter x:Key="stringToVisibilityConverter" />
+        <h:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Content="Mitarbeiterverwaltung" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{StaticResource headerText}" />
+
+        <ListView Name="lvMitarbeiter" Grid.Row="1" Margin="10" ItemsSource="{Binding MitarbeiterList}" SelectedItem="{Binding SelectedMitarbeiter}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="50" Header="ID" DisplayMemberBinding="{Binding ID, Mode=OneWay}" />
+                    <GridViewColumn Width="130" Header="Name" DisplayMemberBinding="{Binding Name, Mode=OneWay}" />
+                    <GridViewColumn Width="90" Header="Geburtsdatum" DisplayMemberBinding="{Binding Geburtsdatum, StringFormat='\{0:d\}', Mode=OneWay}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <GroupBox Header="Details" Grid.Row="1" Grid.Column="1" Margin="0,0,10,10">
+            <StackPanel Visibility="{Binding Path=HasSelectedMitarbeiter, Converter={StaticResource booleanToVisibilityConverter}}" >
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Mitarbeiter Nr.:"/>
+                    <Label Content="{Binding Path=SelectedMitarbeiter.ID}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Name:"/>
+                    <Label Content="{Binding Path=SelectedMitarbeiter.Name}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Geburtsdatum:"/>
+                    <Label Content="{Binding Path=SelectedMitarbeiter.Geburtsdatum}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Eintrittsdatum:"/>
+                    <Label Content="{Binding Path=SelectedMitarbeiter.Eintrittsdatum}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Grundgehalt:"/>
+                    <Label Content="{Binding Path=SelectedMitarbeiter.Grundgehalt}" ContentStringFormat="0.00 Euro"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Hierarchie:"/>
+                    <Label Content="{Binding Path=SelectedMitarbeiter.Hierarchie}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Jahresgehalt:"/>
+                    <Label Content="{Binding Path=SelectedMitarbeiter.Jahresgehalt}" ContentStringFormat="0.00 Euro"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Anstellungsdauer:"/>
+                    <Label Content="{Binding Path=SelectedMitarbeiter.Anstellungsdauer.Days}" ContentStringFormat="0 Tage"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=SelectedMitarbeiter.Hierarchie, Converter={StaticResource stringToVisibilityConverter}, ConverterParameter=Manager}">
+                    <Label Content="Bonus:"/>
+                    <Label Content="{Binding Path=SelectedMitarbeiter.Bonus}" ContentStringFormat="0.00 \%"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=SelectedMitarbeiter.Hierarchie, Converter={StaticResource stringToVisibilityConverter}, ConverterParameter=Experten}">
+                    <Label Content="Fachgebiet:"/>
+                    <Label Content="{Binding Path=SelectedMitarbeiter.Fachgebiet}"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" >
+            <Button Content="Mitarbeiter hinzufügen" Height="20" Width="130" Click="Button_Click_Mitarbeiter_Add" />
+            <Button Content="Mitarbeiter bearbeiten" Height="20" Width="130" Click="Button_Click_Mitarbeiter_Edit" IsEnabled="{Binding Path=HasSelectedMitarbeiter}"/>
+            <Button Content="Mitarbeiter löschen" Height="20" Width="130" Click="Button_Click_Mitarbeiter_Del" IsEnabled="{Binding Path=HasSelectedMitarbeiter}"/>
+        </StackPanel>
+
+    </Grid>
+    
+</Window>

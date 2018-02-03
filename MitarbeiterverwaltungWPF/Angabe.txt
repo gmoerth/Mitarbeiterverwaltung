@@ -1,0 +1,23 @@
+Mitarbeiterverwaltung MVVM
+
+Personalverwaltung MVVM
+
+Implementiere ein WPF Programm für die Personalverwaltung, unter Verwendung des MVVM Design Patterns,
+Im Hauptfenster soll eine Liste mit allen Mitarbeitern angezeigt werden. Die verschiedenen Aktionen sollen über Buttons
+oder Menübefehle im Hauptfenster ausgelöst werden. 
+
+Falls für eine Aktion ein eigenes Fenster erforderlich ist
+(z.B. hinzufügen neuer Mitarbeiter, Editieren eines Mitarbeiters, Eingabe des Betrags für die Gehaltserhöhung etc.)
+soll dafür ein eigener View mit Viewmodel implementiert werden. 
+
+WICHTIG: Erstelle VOR dem Implementieren ein Design, in dem die geplanten Views, ViewModels sowie deren Interaktionen
+mit den Model-Klassen beschrieben werden. 
+
+Für Anpassungen eines Views für unterschiedliche Datenklassen (Mitarbeiter, Experte, Manager)
+können u.a. folgende Techniken verwendet werden: 
+- Binden an eine Property des ViewModel, welche je nach Datenklasse einen passenden Wert liefert
+- Binden mit Hilfe eines Converters (z.B. Converter, der die Visibility je nach Typ der Datenklasse berechnet) 
+
+Das Programm soll auf 2 Projekte aufgeteilt weden: 
+- Ein Projekt soll die Daten-Klassen und die Verwaltungsklasse enthalten
+- Die WPF Views ViewModels etc. sollen in einem separtaen Projekt implementiert werden 
