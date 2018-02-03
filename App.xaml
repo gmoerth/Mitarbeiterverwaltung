@@ -1,0 +1,49 @@
+﻿<Application x:Class="Mitarbeiterverwaltung.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Mitarbeiterverwaltung"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+
+        <SolidColorBrush x:Key="labelForeground" Color="Brown"></SolidColorBrush>
+        <SolidColorBrush x:Key="controlForeground" Color="Brown"></SolidColorBrush>
+        <SolidColorBrush x:Key="controlBackground" Color="BlanchedAlmond"></SolidColorBrush>
+        <SolidColorBrush x:Key="buttonBackground" Color="BlanchedAlmond"></SolidColorBrush>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource labelForeground}"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="headerText">
+            <Setter Property="Foreground" Value="{StaticResource labelForeground}"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+        </Style>
+
+        <Style TargetType="Control" >
+            <Setter Property="Foreground" Value="{StaticResource controlForeground}"/>
+            <Setter Property="Background" Value="{StaticResource controlBackground}"/>
+        </Style>
+
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type Control}}">
+            <Setter Property="Margin" Value="5,2"/>
+        </Style>
+
+        <Style TargetType="DatePicker" BasedOn="{StaticResource {x:Type Control}}">
+            <Setter Property="Margin" Value="5,2"/>
+        </Style>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="Foreground" Value="{StaticResource labelForeground}"/>
+            <Setter Property="Margin" Value="5,2,15,2"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource controlForeground}"/>
+            <Setter Property="Background" Value="{StaticResource buttonBackground}"/>
+            <Setter Property="Margin" Value="10,10"/>
+        </Style>
+
+    </Application.Resources>
+</Application>

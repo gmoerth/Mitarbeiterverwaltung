@@ -38,23 +38,27 @@ namespace Mitarbeiterverwaltung
                 mit.Gehaltserhöhung(Prozent);
         }
 
-        public static void Ausgabe(int ID)
+        public static string Ausgabe(int ID)
         {
+            string str = "";
             foreach (Mitarbeiter mit in personen)
                 if (mit.ID == ID)
                 {
-                    mit.Ausgabe();
+                    str = mit.Ausgabe();
                     break;
                 }
+            return str;
         }
 
-        public static void Ausgabe()
+        public static string Ausgabe()
         {
+            string str = "";
             foreach (Mitarbeiter mit in personen)
             {
-                mit.Ausgabe();
-                Console.WriteLine();
+                str += mit.Ausgabe();
+                str += "\n";
             }
+            return str;
         }
     }
 }

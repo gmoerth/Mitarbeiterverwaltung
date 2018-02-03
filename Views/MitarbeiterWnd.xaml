@@ -1,0 +1,64 @@
+﻿<Window x:Class="Mitarbeiterverwaltung.Views.MitarbeiterWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mitarbeiterverwaltung.Views"
+        mc:Ignorable="d"
+        Title="MitarbeiterWnd" Height="325" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" Content="Mitarbeiter/Manager/Experte" Style="{StaticResource headerText}"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="_ID:"  Target="{Binding ElementName=txtID}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="txtID"/>
+       
+        <Label Grid.Row="2" Grid.Column="0" Content="_Name:" Target="{Binding ElementName=txtName}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Name="txtName"/>
+        
+        <Label Grid.Row="3" Grid.Column="0" Content="Geb_urtsdatum:" Target="{Binding ElementName=dtpGeburtsdatum}"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" Name="dtpGeburtsdatum"/>
+        
+        <Label Grid.Row="4" Grid.Column="0" Content="Eintri_ttsdatum:" Target="{Binding ElementName=dtpEintrittsdatum}"/>
+        <DatePicker Grid.Row="4" Grid.Column="1" Name="dtpEintrittsdatum"/>
+
+        <Label Grid.Row="5" Grid.Column="0" Content="_Grundgehalt: [€]" Target="{Binding ElementName=txtGrundgehalt}"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Name="txtGrundgehalt"/>
+
+        <Label Grid.Row="6" Grid.Column="0" Content="Hierachie"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <RadioButton Name="rbMitarbeiter" Content="_Mitarbeiter" GroupName="hierarchy" IsChecked="True" Click="rbMitarbeiter_Click"/>
+            <RadioButton Name="rbManager" Content="Manag_er" GroupName="hierarchy" Click="rbManager_Click"/>
+            <RadioButton Name="rbExperte" Content="E_xperte" GroupName="hierarchy" Click="rbExperte_Click"/>
+        </StackPanel>
+
+        <Label Grid.Row="7" Grid.Column="0" Content="_Bonus: [%]" Target="{Binding ElementName=txtBonus}"/>
+        <TextBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Name="txtBonus"/>
+
+        <Label Grid.Row="8" Grid.Column="0" Content="_Fachgebiet:" Target="{Binding ElementName=txtFachgebiet}"/>
+        <TextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Name="txtFachgebiet"/>
+
+        <Button Name="btnOK" Grid.Row="10" Grid.Column="2" Content="_OK" IsDefault="True" Click="btnOK_Click" />
+        <Button Name="btnCancel" Grid.Row="10" Grid.Column="3" Content="_Abbrechen" IsCancel="True" />
+
+    </Grid>
+</Window>

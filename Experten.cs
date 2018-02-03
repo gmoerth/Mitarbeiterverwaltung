@@ -19,10 +19,11 @@ namespace Mitarbeiterverwaltung
             return Grundgehalt * 15;
         }
 
-        public override void Ausgabe()
+        public override string Ausgabe()
         {
             base.Ausgabe();
-            Console.WriteLine($"Fachgebiet:       {Fachgebiet}");
+            strAusgabe += "\nFachgebiet:       " + Fachgebiet;
+            return strAusgabe;
         }
     }
 }

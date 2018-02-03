@@ -47,6 +47,7 @@ namespace Mitarbeiterverwaltung
             }
         }
         public double Grundgehalt { get; set; }
+        protected string strAusgabe;
 
         public virtual double Jahresgehalt()
         {
@@ -64,16 +65,18 @@ namespace Mitarbeiterverwaltung
             return span;
         }
 
-        public virtual void Ausgabe()
+        public virtual string Ausgabe()
         {
-            Console.WriteLine($"Hierarchie        {GetType().Name}");
-            Console.WriteLine($"ID:               {ID}");
-            Console.WriteLine($"Name:             {Name}");
-            Console.WriteLine($"Geburtsdatum:     {Geburtsdatum:d}"); 
-            Console.WriteLine($"Eintrittsdatum:   {Eintrittsdatum:d}"); 
-            Console.WriteLine($"Grundgehalt:      {Grundgehalt:0.00} Euro");
-            Console.WriteLine($"Jahresgehalt:     {Jahresgehalt():0.00} Euro");
-            Console.WriteLine($"Anstellungsdauer: {Anstellungsdauer().Days} Tage");
+            strAusgabe = "";
+            strAusgabe += "\nHierarchie        " + GetType().Name.ToString();
+            strAusgabe += "\nID:               " + ID.ToString();
+            strAusgabe += "\nName:             " + Name;
+            strAusgabe += "\nGeburtsdatum:     " + Geburtsdatum.ToShortDateString();
+            strAusgabe += "\nEintrittsdatum:   " + Eintrittsdatum.ToShortDateString();
+            strAusgabe += "\nGrundgehalt:      " + Grundgehalt.ToString("0.00") + " Euro";
+            strAusgabe += "\nJahresgehalt:     " + Jahresgehalt().ToString("0.00") + " Euro";
+            strAusgabe += "\nAnstellungsdauer: " + Anstellungsdauer().Days.ToString() + " Tage";
+            return strAusgabe;
         }
 
         public override string ToString()

@@ -19,10 +19,11 @@ namespace Mitarbeiterverwaltung
             return Grundgehalt * 14 * (1 + (Bonus / 100));
         }
 
-        public override void Ausgabe()
+        public override string Ausgabe()
         {
             base.Ausgabe();
-            Console.WriteLine($"Bonus:            {Bonus:0.00} %");
+            strAusgabe += "\nBonus:            " + Bonus.ToString("0.00") + " %";
+            return strAusgabe;
         }
 
         public override void Gehaltserhöhung(double Prozent)
