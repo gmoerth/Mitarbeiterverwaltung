@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MitarbeiterwerwaltungDLL.Entity.DatabaseInit">
+    <Position X="1.75" Y="6.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\DatabaseInit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterwerwaltungDLL.Entity.DatabaseVerwaltung" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAgAAEA=</HashCode>
+      <FileName>Entity\DatabaseVerwaltung.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MitarbeiterwerwaltungDLL.Entity.MitarbeiterList">
+    <Position X="6.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\MitarbeiterList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterwerwaltungDLL.Model.Experten" Collapsed="true">
+    <Position X="1.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAgAAAAAACAAAAAAAAAAAAAAAAAAACAAEAAA=</HashCode>
+      <FileName>Model\Experten.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterwerwaltungDLL.Model.Manager" Collapsed="true">
+    <Position X="4" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAABAAAAAAAAACAAAAAQAAgAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Model\Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterwerwaltungDLL.Model.Mitarbeiter" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAYIAAAAACgYEECABAgARAgAAAAAAAAAACCAAAAxA=</HashCode>
+      <FileName>Model\Mitarbeiter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.222" />
+  </Class>
+  <Class Name="MitarbeiterwerwaltungDLL.Model.Verwaltung" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAgAAAAAAAAAAEAAAQAAAAAIAAAAAAACAwAAEA=</HashCode>
+      <FileName>Model\Verwaltung.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.122" Collapsed="true" />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Data.Entity.DbContext" Collapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Data.Entity.DropCreateDatabaseIfModelChanges&lt;TContext&gt;">
+    <Position X="1.5" Y="4.5" Width="3.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="MitarbeiterwerwaltungDLL.IMitarbeiterListVerwaltung">
+    <Position X="9.25" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAgAAEA=</HashCode>
+      <FileName>IMitarbeiterListVerwaltung.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -24,6 +24,7 @@ namespace MitarbeiterverwaltungWPF.Views
 
             InitializeComponent();
 
+            txtID.IsEnabled = false;
             txtName.Focus();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
@@ -42,21 +43,24 @@ namespace MitarbeiterverwaltungWPF.Views
         private void rbMitarbeiter_Click(object sender, RoutedEventArgs e)
         {
             viewModel.OnMitarbeiterClick();
-            DataContext = Verwaltung.mitarbeiter;
+            Mitarbeiter mit = new Mitarbeiter();
+            DataContext = mit;
             DataContext = viewModel;
         }
 
         private void rbManager_Click(object sender, RoutedEventArgs e)
         {
             viewModel.OnManagerClick();
-            DataContext = Verwaltung.manager;
+            Manager man = new Manager();
+            DataContext = man;
             DataContext = viewModel;
         }
 
         private void rbExperte_Click(object sender, RoutedEventArgs e)
         {
             viewModel.OnExperteClick();
-            DataContext = Verwaltung.experte;
+            Experten exp = new Experten();
+            DataContext = exp;
             DataContext = viewModel;
         }
 

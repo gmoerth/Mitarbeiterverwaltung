@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MitarbeiterverwaltungWPF.Views"
         xmlns:h="clr-namespace:MitarbeiterverwaltungWPF.Helpers"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="525">
+        Title="MainWindow" Height="400" Width="525" Background="#FFFFFFC0">
 
     <Window.Resources>
         <h:StringToVisibilityConverter x:Key="stringToVisibilityConverter" />

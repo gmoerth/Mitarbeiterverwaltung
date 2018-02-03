@@ -1,11 +1,12 @@
 ﻿using MitarbeiterverwaltungWPF.Views;
+using MitarbeiterwerwaltungDLL;
 using MitarbeiterwerwaltungDLL.Model;
+using MitarbeiterwerwaltungDLL.Entity;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace MitarbeiterverwaltungWPF.ViewModels
 {
@@ -34,35 +35,45 @@ namespace MitarbeiterverwaltungWPF.ViewModels
             }
         }
 
-        //DummyRepository myRepository;
+        IMitarbeiterListVerwaltung verwaltung;
 
         public void LoadData()
         {
-            //myRepository = new DummyRepository();
-            Verwaltung.DummyPersonen();
-            ReloadData();
+            MessageBoxResult result = System.Windows.MessageBox.Show("Mit Datenbank SQLExpress = JA\n\noder mit Dummy MitarbeiterList = Nein", "Mitarbeiterverwaltung © G_&_CH_MOERTH", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Database.SetInitializer(new DatabaseInit());
+                verwaltung = new DatabaseVerwaltung();
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                verwaltung = new Verwaltung();
+            }
 
+            ReloadData();
         }
 
         public void ReloadData()
         {
             MitarbeiterList.Clear();
-            //foreach (Student s in myRepository.LoadAllStudents())
-            foreach (Mitarbeiter mit in Verwaltung.personen)
+            foreach (Mitarbeiter mit in verwaltung.GetAllPersonen())
             {
                 MitarbeiterList.Add(mit);
             }
         }
 
-        public void OnAddStudent()
+        public void OnAddMitarbeiter()
         {
-            //Student student = ShowStudentDialog(new Student() { Birthdate = new DateTime(2000, 1, 1) });
+            int x = 0; // Neue Mitarbeiter bekommen immer neue ID ... gelöschte ID werden nicht nochmal vergeben
+            foreach (Mitarbeiter mit in verwaltung.GetAllPersonen())
+                if (mit.ID >= x)
+                    x = mit.ID;
             Mitarbeiter mitarbeiter = ShowMitarbeiterDialog(new Mitarbeiter()
-            { Geburtsdatum = new DateTime(1980, 1, 1), Eintrittsdatum = DateTime.Today });
+            { ID = ++x, Geburtsdatum = new DateTime(1980, 1, 1), Eintrittsdatum = DateTime.Today });
             if (mitarbeiter != null)
             {
-                //myRepository.AddStudent(student);
-                Verwaltung.AddPerson(mitarbeiter);
+                verwaltung.AddPerson(mitarbeiter);
+                SelectedMitarbeiter = mitarbeiter;
                 ReloadData();
             }
         }
@@ -72,8 +83,7 @@ namespace MitarbeiterverwaltungWPF.ViewModels
             Mitarbeiter mit = ShowMitarbeiterDialog(SelectedMitarbeiter.Clone());
             if (mit != null)
             {
-                //myRepository.UpdateStudent(s);
-                Verwaltung.UpdatePerson(mit);
+                verwaltung.UpdatePerson(mit);
                 int index = MitarbeiterList.IndexOf(SelectedMitarbeiter);
                 MitarbeiterList[index] = mit;
                 SelectedMitarbeiter = mit;
@@ -82,8 +92,7 @@ namespace MitarbeiterverwaltungWPF.ViewModels
 
         public void OnDeleteMitarbeiter()
         {
-            //myRepository.DeleteStudent(SelectedStudent);
-            Verwaltung.DeletePerson(SelectedMitarbeiter);
+            verwaltung.DeletePerson(SelectedMitarbeiter);
             ReloadData();
         }
 

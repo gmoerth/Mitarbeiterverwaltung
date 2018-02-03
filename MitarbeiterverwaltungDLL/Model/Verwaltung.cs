@@ -6,29 +6,39 @@ using System.Text;
 
 namespace MitarbeiterwerwaltungDLL.Model
 {
-    public static class Verwaltung
+    public class Verwaltung : IMitarbeiterListVerwaltung
     {
-        public static ObservableCollection<Mitarbeiter> personen = new ObservableCollection<Mitarbeiter>();
-        public static Mitarbeiter mitarbeiter = new Mitarbeiter();
-        public static Manager manager = new Manager();
-        public static Experten experte = new Experten();
+        ObservableCollection<Mitarbeiter> personen = new ObservableCollection<Mitarbeiter>();
 
-        public static void DummyPersonen()
+        public static IEnumerable<Mitarbeiter> DummyMitarbeiterList()
         {
-            Mitarbeiter mitarbeiter1 = new Mitarbeiter(1000, "Gerhard", DateTime.Parse("24.06.1967"), DateTime.Parse("1.1.2014"), 2345.67);
-            AddPerson(mitarbeiter1);
-            Manager mitarbeiter2 = new Manager(1001, "Christine", DateTime.Parse("09.05.1970"), DateTime.Parse("1.5.2012"), 4000.00, 5.5);
-            AddPerson(mitarbeiter2);
-            Experten mitarbeiter3 = new Experten(1002, "Susi", DateTime.Parse("11.10.1975"), DateTime.Parse("1.12.2016"), 3000.00, "Kochen");
-            AddPerson(mitarbeiter3);
+            return new List<Mitarbeiter>()
+            {
+                new Mitarbeiter(1000, "Gerhard", DateTime.Parse("24.06.1967"), DateTime.Parse("1.10.2014"), 2345.67),
+                new Manager(1001, "Christine", DateTime.Parse("09.05.1970"), DateTime.Parse("1.5.2012"), 4000.00, 5.5),
+                new Experten(1002, "Susi", DateTime.Parse("11.10.1975"), DateTime.Parse("1.12.2016"), 3000.00, "SW-Entwicklung")
+            };
         }
 
-        public static void AddPerson(Mitarbeiter Person)
+        public Verwaltung()
+        {
+            foreach (Mitarbeiter mit in DummyMitarbeiterList())
+            {
+                AddPerson(mit);
+            }
+        }
+
+        public IEnumerable<Mitarbeiter> GetAllPersonen()
+        {
+            return personen;
+        }
+
+        public void AddPerson(Mitarbeiter Person)
         {
             personen.Add(Person);
         }
 
-        public static Mitarbeiter GetPerson(int ID)
+        public Mitarbeiter GetPerson(int ID)
         {
             foreach (Mitarbeiter mit in personen)
                 if (mit.ID == ID)
@@ -36,7 +46,7 @@ namespace MitarbeiterwerwaltungDLL.Model
             return null;
         }
 
-        public static Mitarbeiter GetPerson(Mitarbeiter person)
+        public Mitarbeiter GetPerson(Mitarbeiter person)
         {
             foreach (Mitarbeiter mit in personen)
                 if (mit.ID == person.ID)
@@ -44,7 +54,7 @@ namespace MitarbeiterwerwaltungDLL.Model
             return null;
         }
 
-        public static void DeletePerson(Mitarbeiter person)
+        public void DeletePerson(Mitarbeiter person)
         {
             foreach (Mitarbeiter mit in personen)
                 if (mit.ID == person.ID)
@@ -54,7 +64,7 @@ namespace MitarbeiterwerwaltungDLL.Model
                 }
         }
 
-        public static void UpdatePerson(Mitarbeiter person)
+        public void UpdatePerson(Mitarbeiter person)
         {
             foreach (Mitarbeiter mit in personen)
                 if (mit.ID == person.ID)
@@ -64,7 +74,7 @@ namespace MitarbeiterwerwaltungDLL.Model
                 }
         }
 
-        public static void Gehaltserhöhung(int ID, double Prozent)
+        public void Gehaltserhöhung(int ID, double Prozent)
         {
             foreach (Mitarbeiter mit in personen)
                 if (mit.ID == ID)
@@ -74,13 +84,13 @@ namespace MitarbeiterwerwaltungDLL.Model
                 }
         }
 
-        public static void Gehaltserhöhung(double Prozent)
+        public void Gehaltserhöhung(double Prozent)
         {
             foreach (Mitarbeiter mit in personen)
                 mit.Gehaltserhöhung(Prozent);
         }
 
-        public static string Ausgabe(int ID)
+        public string Ausgabe(int ID)
         {
             string str = "";
             foreach (Mitarbeiter mit in personen)
@@ -92,7 +102,7 @@ namespace MitarbeiterwerwaltungDLL.Model
             return str;
         }
 
-        public static string Ausgabe()
+        public string Ausgabe()
         {
             string str = "";
             foreach (Mitarbeiter mit in personen)

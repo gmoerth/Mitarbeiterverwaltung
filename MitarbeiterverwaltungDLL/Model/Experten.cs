@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -17,6 +18,7 @@ namespace MitarbeiterwerwaltungDLL.Model
         }
 
         private string _fachgebiet;
+        [StringLength(256)]
         public string Fachgebiet
         {
             get { return _fachgebiet; }

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace MitarbeiterwerwaltungDLL.Model
 {
+    [Table("Mitarbeiter")]
     public class Mitarbeiter : INotifyPropertyChanged, IDataErrorInfo
     {
         public Mitarbeiter(int MitarbeiterID, string Name, DateTime Geburtsdatum, DateTime Eintrittsdatum, double Grundgehalt)
@@ -27,6 +30,8 @@ namespace MitarbeiterwerwaltungDLL.Model
         }
 
         private int _id;
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID
         {
             get { return _id; }
@@ -37,6 +42,8 @@ namespace MitarbeiterwerwaltungDLL.Model
             }
         }
         private string _name;
+        [Required]
+        [StringLength(256)]
         public string Name
         {
             get { return _name; }
@@ -47,6 +54,7 @@ namespace MitarbeiterwerwaltungDLL.Model
             }
         }
         private DateTime _geburtsdatum;
+        [Required]
         public DateTime Geburtsdatum
         {
             get { return _geburtsdatum; }
@@ -57,6 +65,7 @@ namespace MitarbeiterwerwaltungDLL.Model
             }
         }
         private DateTime _eintrittsdatum;
+        [Required]
         public DateTime Eintrittsdatum
         {
             get { return _eintrittsdatum; }
@@ -67,6 +76,7 @@ namespace MitarbeiterwerwaltungDLL.Model
             }
         }
         private double _grundgehalt;
+        [Required]
         public double Grundgehalt
         {
             get { return _grundgehalt; }
@@ -77,6 +87,8 @@ namespace MitarbeiterwerwaltungDLL.Model
             }
         }
         private string _hierarchie;
+        [Required]
+        [StringLength(50)]
         public string Hierarchie
         {
             get
@@ -131,10 +143,20 @@ namespace MitarbeiterwerwaltungDLL.Model
             return GetType().Name + " " + ID + " " + Name;
         }
 
-        public Mitarbeiter Clone()
+        public virtual Mitarbeiter Clone()
         {
-            Mitarbeiter copy = MemberwiseClone() as Mitarbeiter;
-            return copy;
+            Mitarbeiter person = MemberwiseClone() as Mitarbeiter;
+            return person;
+        }
+
+        public virtual Mitarbeiter Clone(Mitarbeiter person)
+        {
+            person.ID = ID;
+            person.Name = Name;
+            person.Geburtsdatum = Geburtsdatum;
+            person.Eintrittsdatum = Eintrittsdatum;
+            person.Grundgehalt = Grundgehalt;
+            return person;
         }
 
         #region für IDataErrorInfo

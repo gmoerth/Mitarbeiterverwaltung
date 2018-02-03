@@ -3,6 +3,7 @@ using MitarbeiterverwaltungWPF.Views;
 using MitarbeiterwerwaltungDLL.Model;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -19,18 +20,25 @@ namespace MitarbeiterverwaltungWPF.Views
 
         public MainWindow()
         {
-            viewModel = new MainWindowViewModel();
-            DataContext = viewModel;
-            viewModel.LoadData();
+            try
+            {
+                viewModel = new MainWindowViewModel();
+                DataContext = viewModel;
+                viewModel.LoadData();
 
-            InitializeComponent();
+                InitializeComponent();
 
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
         }
 
         private void Button_Click_Mitarbeiter_Add(object sender, RoutedEventArgs e)
         {
-            viewModel.OnAddStudent();
+            viewModel.OnAddMitarbeiter();
         }
 
         private void Button_Click_Mitarbeiter_Edit(object sender, RoutedEventArgs e)
