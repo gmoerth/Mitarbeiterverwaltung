@@ -64,10 +64,13 @@ namespace MitarbeiterverwaltungWPF.ViewModels
 
         public void OnAddMitarbeiter()
         {
-            int x = 0; // Neue Mitarbeiter bekommen immer neue ID ... gelöschte ID werden nicht nochmal vergeben
-            foreach (Mitarbeiter mit in verwaltung.GetAllPersonen())
-                if (mit.ID >= x)
-                    x = mit.ID;
+            //int x = 0; // Neue Mitarbeiter bekommen immer neue ID ... gelöschte ID werden nicht nochmal vergeben
+            //foreach (Mitarbeiter mit in verwaltung.GetAllPersonen())
+            //    if (mit.ID >= x)
+            //        x = mit.ID;
+            // Anmerkung Michaela: mit LinQ gehts kürzer: wichtig ist der Cast auf int? 
+            // damit bei einer leeren Collection kein Absturz passiert
+            int x = verwaltung.GetAllPersonen().Max(p => (int?)p.ID) ?? 0;
             Mitarbeiter mitarbeiter = ShowMitarbeiterDialog(new Mitarbeiter()
             { ID = ++x, Geburtsdatum = new DateTime(1980, 1, 1), Eintrittsdatum = DateTime.Today });
             if (mitarbeiter != null)
